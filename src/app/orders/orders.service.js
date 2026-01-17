@@ -6,7 +6,7 @@ const {
   insertTransaction,
 } = require("./orders.repository");
 
-const { getPizzaById } = require("../pizzas/pizzas.repository");
+const { retrievePizzaById } = require("../pizzas/pizzas.repository");
 const jwt = require("jsonwebtoken");
 const { v4: uuid } = require("uuid");
 
@@ -35,7 +35,7 @@ async function createOrderHandler(req, res) {
     const itemsForDb = [];
 
     for (const item of req.body.items) {
-      const pizzas = await getPizzaById(item.pizza_id);
+      const pizzas = await retrievePizzaById(item.pizza_id);
       if (!pizzas || pizzas.length === 0) {
         return res.status(404).json({ error: "Pizza not found" });
       }
