@@ -11,7 +11,7 @@ async function initializeApp() {
     console.log("✅ Database connected successfully");
 
     // Start server
-    const port = process.env.PORT || 8080;
+    const port = process.env.PORT || 80;
     const host = "0.0.0.0";
 
     const server = app.listen(port, host, () => {
